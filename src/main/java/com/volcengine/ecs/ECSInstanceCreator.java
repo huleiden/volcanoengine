@@ -51,7 +51,32 @@ public class ECSInstanceCreator {
 
         ECSClient ecsClient = new ECSClient(config);
 
-        testCreateInstance(ecsClient, imageId, vpcId, subnetId, keyPairName, securityGroupId);
+        // 1. 测试创建实例
+        // testCreateInstance(ecsClient, imageId, vpcId, subnetId, keyPairName, securityGroupId);
+
+        // 2. 测试查询实例 (硬编码刚才创建的实例ID)
+        String instanceId = "i-yemc0tyfi8qbxythykq1";
+        // System.out.println("\n--- 查询ECS实例: " + instanceId + " ---");
+        // Object response = ecsClient.describeInstance(instanceId);
+        // System.out.println("查询响应: " + response);
+
+        // 3. 测试停止实例
+        // System.out.println("\n--- 停止ECS实例: " + instanceId + " ---");
+        // Object stopResponse = ecsClient.stopInstance(instanceId, false);
+        // System.out.println("停止响应: " + stopResponse);
+
+        // 4. 测试启动实例
+        // System.out.println("\n--- 启动ECS实例: " + instanceId + " ---");
+        // Object startResponse = ecsClient.startInstance(instanceId);
+        // System.out.println("启动响应: " + startResponse);
+
+        // 5. 测试删除实例
+        System.out.println("\n--- 删除ECS实例: " + instanceId + " ---");
+        Object deleteResponse = ecsClient.deleteInstance(instanceId);
+        System.out.println("删除响应: " + deleteResponse);
+
+        // 6. 测试完整工作流 (创建 + 等待 + 查询)
+        // testFullWorkflow(ecsClient, imageId, vpcId, subnetId, keyPairName, securityGroupId);
     }
 
     private static void loadCredentials() {
