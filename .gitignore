@@ -38,4 +38,5 @@ Thumbs.db
 
 # Volcengine credentials
 credentials.properties
+credentials-*.properties
 *.secret

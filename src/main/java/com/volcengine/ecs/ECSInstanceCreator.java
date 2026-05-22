@@ -3,11 +3,10 @@ package com.volcengine.ecs;
 import com.volcengine.ecs.client.ECSClient;
 import com.volcengine.ecs.config.VolcEngineConfig;
 import com.volcengine.ecs.model.ECSInstanceRequest;
+import com.volcengine.common.ProfileConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.Properties;
 import java.util.Scanner;
@@ -23,11 +22,10 @@ public class ECSInstanceCreator {
     private static Properties credentials;
 
     public static void main(String[] args) {
-        loadCredentials();
+        credentials = ProfileConfig.load();
 
         if (credentials == null || credentials.isEmpty()) {
-            System.out.println("错误: 无法加载 credentials.properties 配置文件");
-            System.out.println("请确保 credentials.properties 文件存在于项目根目录");
+            System.out.println("错误: 无法加载配置文件");
             return;
         }
 
@@ -40,7 +38,7 @@ public class ECSInstanceCreator {
         String securityGroupId = credentials.getProperty("volc.security.group.id");
 
         if (accessKeyId == null || accessKeySecret == null) {
-            System.out.println("错误: credentials.properties 中缺少 AccessKey 配置");
+            System.out.println("错误: 配置文件中缺少 AccessKey 信息");
             return;
         }
 
@@ -77,17 +75,6 @@ public class ECSInstanceCreator {
 
         // 6. 测试完整工作流 (创建 + 等待 + 查询)
         // testFullWorkflow(ecsClient, imageId, vpcId, subnetId, keyPairName, securityGroupId);
-    }
-
-    private static void loadCredentials() {
-        credentials = new Properties();
-        try (FileInputStream fis = new FileInputStream("credentials.properties")) {
-            credentials.load(fis);
-            System.out.println("成功加载 credentials.properties 配置文件");
-        } catch (IOException e) {
-            System.out.println("警告: 无法读取 credentials.properties 文件: " + e.getMessage());
-            credentials = null;
-        }
     }
 
     private static void testCreateInstance(ECSClient ecsClient, String imageId, String vpcId,
