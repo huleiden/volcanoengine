@@ -25,7 +25,21 @@
         <dependency>
             <groupId>com.volcengine</groupId>
             <artifactId>volc-sdk-java</artifactId>
-            <version>${volcengine.sdk.version}</version>
+            <version>1.0.263</version>
+        </dependency>
+
+        <!-- JSON 处理库 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.83</version>
+        </dependency>
+
+        <!-- OkHttp 客户端 -->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>4.12.0</version>
         </dependency>
         
         <!-- 火山引擎ECS SDK -->
@@ -33,6 +47,13 @@
             <groupId>com.volcengine</groupId>
             <artifactId>volcengine-java-sdk-ecs</artifactId>
             <version>0.2.36</version>
+        </dependency>
+
+        <!-- 火山引擎 Billing (计费/余额) SDK -->
+        <dependency>
+            <groupId>com.volcengine</groupId>
+            <artifactId>volcengine-java-sdk-billing</artifactId>
+            <version>0.1.124</version>
         </dependency>
 
         <!-- Lombok简化代码 -->
